@@ -44,14 +44,6 @@ h1 {
     color: #007BFF;
 }
 
-<style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background-color: #f4f4f8;
-        color: #333;
-        margin: 0;
-        padding: 1rem;
-    }
 
     h1 {
         text-align: center;
@@ -113,4 +105,8 @@ h1 {
     .top-bar button:hover {
         background-color: #1976d2;
     }
-</style>
+ textarea{
+      border-top:none;
+      border-right: none;
+      border-left: none;
+    }   
