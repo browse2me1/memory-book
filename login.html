@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body { font-family: sans-serif; background: #f9f9f9; padding: 2rem; text-align: center; }
+    input, button { padding: 1rem; font-size: 1rem; margin: 1rem; }
+  </style>
+</head>
+<body>
+  <h2>🔐 Enter Password</h2>
+  <input type="password" id="pass" placeholder="Enter password">
+  <button onclick="checkPassword()">Login</button>
+
+  <script>
+    function checkPassword() {
+      const pass = document.getElementById("pass").value;
+      if (pass === "class2025") {
+        window.location.href = "index.html";
+      } else {
+        alert("Incorrect password!");
+      }
+    }
+  </script>
+</body
