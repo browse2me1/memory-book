@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body { font-family: sans-serif; background: #f9f9f9; padding: 2rem; text-align: center; }
     input, button { padding: 1rem; font-size: 1rem; margin: 1rem; }
   </style>
 </head>
 <body>
+  <div class="top-bar">
+    <h1>📘 Health Informatics(2025 batch) Memory Book</h1>
+    <button onclick="exportToPDF()">📄 Export to PDF</button>
+</div>
   <h2>🔐 Enter Password</h2>
   <input type="password" id="pass" placeholder="Enter password">
   <button onclick="checkPassword()">Login</button>
