@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memory Book</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+</head>
+<div class="top-bar">
+    <h1>📘 Health Informatics(2025 batch) Memory Book</h1>
+    <button onclick="exportToPDF()">📄 Export to PDF</button>
+</div>
+<body>
+    
+    
+    <a href="submit.html" class="add-link">+ Add New Memory</a>
+
+
+    <!-- More entries can be added like this -->
+<script>
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    let memories = JSON.parse(localStorage.getItem("memories")) || [];
+
+    function renderMemories() {
+        container.innerHTML = ""; // Clear old content
+
+        memories.forEach((mem, index) => {
+            const div = document.createElement("div");
+            div.className = "memory-entry";
+
+            const imgHTML = mem.photo
+                ? `<img src="${mem.photo}" alt="${mem.name}" style="max-width:150px;">`
+                : '';
+
+            div.innerHTML = `
+                ${imgHTML}
+                <h3>${mem.name}</h3>
+                <p>${mem.message}</p>
+                <button onclick="editMemory(${index})">✏️ Edit</button>
+                <button onclick="deleteMemory(${index})">🗑️ Delete</button>
+            `;
+
+            container.appendChild(div);
+        });
+    }
+
+    function editMemory(index) {
+        localStorage.setItem("editIndex", index);
+        window.location.href = "submit.html";
+    }
+
+    function deleteMemory(index) {
+        if (confirm("Are you sure you want to delete this memory?")) {
+            memories.splice(index, 1); // Remove from array
+            localStorage.setItem("memories", JSON.stringify(memories)); // Update storage
+            renderMemories(); // Re-render list
+        }
+    }
+
+    renderMemories(); // Initial render
+    function exportToPDF() {
+    const element = document.body.cloneNode(true);
+    // Hide the PDF export button from the PDF itself
+    element.querySelector('button[onclick="exportToPDF()"]').style.display = 'none';
+
+    html2pdf()
+        .set({
+            margin: 0.5,
+            filename: 'MemoryBook.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        })
+        .from(element)
+        .save();
+}
+</script>
+</body>
+</html>
